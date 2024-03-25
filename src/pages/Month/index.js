@@ -1,7 +1,16 @@
 import { NavBar, DatePicker } from 'antd-mobile'
 import './index.scss'
 import classNames from 'classnames'
+import { useState } from 'react'
 const Month = () => {
+  // 控制弹框的打开和关闭
+  const [dateVisible, setDateVisible] = useState(false)
+  // 选择的月份
+  const [currentDate, setCurrentDate] = useState(new Date().getMonth() + 1)
+
+  const onConfirm = () => {
+    setDateVisible(false)
+  }
   return (
     <div className="monthlyBill">
       <NavBar className="nav" backArrow={false}>
@@ -12,10 +21,9 @@ const Month = () => {
           {/* 时间切换区域 */}
           <div className="date" onClick={() => setDateVisible(true)}>
             {/* <span className="text">{currentDate + ''}月账单</span> */}
-            <span className="text">{ + ''}月账单</span>
+            <span className="text">{+''}月账单</span>
             {/* 思路：根据当前弹框打开的状态控制expand类名是否存在 */}
-            {/* <span className={classNames('arrow', dateVisible && 'expand')}></span> */}
-            <span className={classNames('arrow', 'expand')}></span>
+            <span className={classNames('arrow', dateVisible && 'expand')}></span>
           </div>
           {/* 统计区域 */}
           <div className="twoLineOverview">
@@ -33,7 +41,7 @@ const Month = () => {
             </div>
           </div>
           {/* 时间选择器 */}
-          {/* <DatePicker
+          <DatePicker
             className="kaDate"
             title="记账日期"
             precision="month"
@@ -42,7 +50,7 @@ const Month = () => {
             onConfirm={onConfirm}
             onClose={() => setDateVisible(false)}
             max={new Date()}
-          /> */}
+          />
         </div>
         {/* 单日列表统计 */}
         {/* {dayGroup.keys.map(key => {
