@@ -2,14 +2,17 @@ import { NavBar, DatePicker } from 'antd-mobile'
 import './index.scss'
 import classNames from 'classnames'
 import { useState } from 'react'
+import dayjs from 'dayjs'
 const Month = () => {
   // 控制弹框的打开和关闭
   const [dateVisible, setDateVisible] = useState(false)
   // 选择的月份
-  const [currentDate, setCurrentDate] = useState(new Date().getMonth() + 1)
+  const [currentDate, setCurrentDate] = useState(dayjs(new Date()).format('YYYY-MM'))
 
-  const onConfirm = () => {
+  const onConfirm = date => {
     setDateVisible(false)
+    const formatDate = dayjs(date).format('YYYY-MM')
+    setCurrentDate(formatDate)
   }
   return (
     <div className="monthlyBill">
@@ -20,8 +23,7 @@ const Month = () => {
         <div className="header">
           {/* 时间切换区域 */}
           <div className="date" onClick={() => setDateVisible(true)}>
-            {/* <span className="text">{currentDate + ''}月账单</span> */}
-            <span className="text">{+''}月账单</span>
+            <span className="text">{currentDate + ''}月账单</span>
             {/* 思路：根据当前弹框打开的状态控制expand类名是否存在 */}
             <span className={classNames('arrow', dateVisible && 'expand')}></span>
           </div>
@@ -49,7 +51,7 @@ const Month = () => {
             onCancel={() => setDateVisible(false)}
             onConfirm={onConfirm}
             onClose={() => setDateVisible(false)}
-            max={new Date()}
+            // max={new Date()}
           />
         </div>
         {/* 单日列表统计 */}
