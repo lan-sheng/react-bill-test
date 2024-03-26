@@ -1,7 +1,7 @@
 import { NavBar, DatePicker } from 'antd-mobile'
 import './index.scss'
 import classNames from 'classnames'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import dayjs from 'dayjs'
 import { useSelector } from 'react-redux'
 import _ from 'lodash'
@@ -41,6 +41,13 @@ const Month = () => {
     const total = income + pay
     return { pay, income, total }
   }, [currentMonthList])
+
+  // 初始化时把当前月份的数据渲染出来
+  useEffect(() => {
+    const formatDate = dayjs().format('YYYY-MM')
+    console.log('groupedBillList[formatDate]: ', groupedBillList[formatDate])
+    groupedBillList[formatDate] && setCurrentMonthList(groupedBillList[formatDate])
+  }, [groupedBillList])
 
   // 确认回调
   const onConfirm = date => {
