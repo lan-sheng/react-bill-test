@@ -15,14 +15,39 @@ const Month = () => {
 
   // 控制弹框的打开和关闭
   const [dateVisible, setDateVisible] = useState(false)
-  
+
   // 选择的月份
   const [currentDate, setCurrentDate] = useState(dayjs(new Date()).format('YYYY-MM'))
 
+  // 当前月份账单数据
+  const [currentMonthList, setCurrentMonthList] = useState([])
+
+  const { pay, income, total } = useMemo(() => {
+    // 支出
+    const pay = currentMonthList.reduce((total, item) => {
+      if (item.type === 'pay') {
+        total += item.money
+      }
+      return total
+    }, 0)
+    // 收入
+    const income = currentMonthList.reduce((total, item) => {
+      if (item.type === 'income') {
+        total += item.money
+      }
+      return total
+    }, 0)
+    // 结余
+    const total = income + pay
+    return { pay, income, total }
+  }, [currentMonthList])
+
+  // 确认回调
   const onConfirm = date => {
     setDateVisible(false)
     const formatDate = dayjs(date).format('YYYY-MM')
     setCurrentDate(formatDate)
+    setCurrentMonthList(groupedBillList[formatDate])
   }
   return (
     <div className="monthlyBill">
@@ -40,15 +65,15 @@ const Month = () => {
           {/* 统计区域 */}
           <div className="twoLineOverview">
             <div className="item">
-              {/* <span className="money">{monthResult.pay.toFixed(2)}</span> */}
+              <span className="money">{pay.toFixed(2)}</span>
               <span className="type">支出</span>
             </div>
             <div className="item">
-              {/* <span className="money">{monthResult.income.toFixed(2)}</span> */}
+              <span className="money">{income.toFixed(2)}</span>
               <span className="type">收入</span>
             </div>
             <div className="item">
-              {/* <span className="money">{monthResult.total.toFixed(2)}</span> */}
+              <span className="money">{total.toFixed(2)}</span>
               <span className="type">结余</span>
             </div>
           </div>
@@ -61,7 +86,7 @@ const Month = () => {
             onCancel={() => setDateVisible(false)}
             onConfirm={onConfirm}
             onClose={() => setDateVisible(false)}
-            // max={new Date()}
+            max={new Date()}
           />
         </div>
         {/* 单日列表统计 */}
