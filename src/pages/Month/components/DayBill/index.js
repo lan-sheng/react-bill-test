@@ -1,6 +1,8 @@
 import classNames from 'classnames'
 import './index.scss'
 import { useMemo } from 'react'
+import { billTypeToName } from '@/contants'
+
 const DayBill = ({ date, billList }) => {
   const { pay, income, total } = useMemo(() => {
     // 支出
@@ -45,7 +47,7 @@ const DayBill = ({ date, billList }) => {
         </div>
       </div>
       {/* 单日列表 */}
-      {/* <div className="billList" style={{ display: visible ? 'block' : 'none' }}>
+      <div className="billList" style={{ display: visible ? 'block' : 'none' }}>
         {billList.map(item => {
           return (
             <div className="bill" key={item.id}>
@@ -58,7 +60,7 @@ const DayBill = ({ date, billList }) => {
             </div>
           )
         })}
-      </div> */}
+      </div>
     </div>
   )
 }
