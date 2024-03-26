@@ -10,9 +10,9 @@ import { useDispatch } from 'react-redux'
 import dayjs from 'dayjs'
 
 const New = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   // 1. 准备一个控制收入支出的状态
-  // const [billType, setBillType] = useState('pay') // pay-支出 income-收入
+  const [billType, setBillType] = useState('pay') // pay-支出 income-收入
 
   // 收集金额
   // const [money, setMoney] = useState(0)
@@ -66,13 +66,13 @@ const New = () => {
             <div className="date">
               <Icon type="calendar" className="icon" />
               <span className="text" onClick={() => setDateVisible(true)}>
-                {dayjs(date).format('YYYY-MM-DD')}
+                {/* {dayjs(date).format('YYYY-MM-DD')} */}
               </span>
               {/* 时间选择器 */}
-              <DatePicker className="kaDate" title="记账日期" max={new Date()} visible={dateVisible} onConfirm={dateConfirm} />
+              {/* <DatePicker className="kaDate" title="记账日期" max={new Date()} visible={dateVisible} onConfirm={dateConfirm} /> */}
             </div>
             <div className="kaInput">
-              <Input className="input" placeholder="0.00" type="number" value={money} onChange={moneyChange} />
+              {/* <Input className="input" placeholder="0.00" type="number" value={money} onChange={moneyChange} /> */}
               <span className="iconYuan">¥</span>
             </div>
           </div>
@@ -89,7 +89,8 @@ const New = () => {
                 {item.list.map(item => {
                   return (
                     // selected
-                    <div className={classNames('item', useFor === item.type ? 'selected' : '')} key={item.type} onClick={() => setUseFor(item.type)}>
+                    // <div className={classNames('item', useFor === item.type ? 'selected' : '')} key={item.type} onClick={() => setUseFor(item.type)}>
+                    <div className={classNames('item', true ? 'selected' : '')} key={item.type} onClick={() => setUseFor(item.type)}>
                       <div className="icon">
                         <Icon type={item.type} />
                       </div>
@@ -104,9 +105,9 @@ const New = () => {
       </div>
 
       <div className="btns">
-        <Button className="btn save" onClick={saveBill}>
+        {/* <Button className="btn save" onClick={saveBill}> */}
           保 存
-        </Button>
+        {/* </Button> */}
       </div>
     </div>
   )
