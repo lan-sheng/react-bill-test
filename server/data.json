@@ -132,6 +132,39 @@
       "money": 110,
       "date": "2024-03-26T08:11:51.658Z",
       "useFor": "bonus"
+    },
+    {
+      "id": "c5b0",
+      "type": "pay",
+      "money": -110,
+      "useFor": "longdistance"
+    },
+    {
+      "id": "877b",
+      "type": "pay",
+      "money": 0,
+      "useFor": "food"
+    },
+    {
+      "id": "6c9f",
+      "type": "pay",
+      "money": 0,
+      "date": "2024-03-25T16:00:00.000Z",
+      "useFor": "food"
+    },
+    {
+      "id": "a7d3",
+      "type": "pay",
+      "money": 0,
+      "date": "2024-03-26T08:23:51.868Z",
+      "useFor": ""
+    },
+    {
+      "id": "2f3e",
+      "type": "pay",
+      "money": 0,
+      "date": "2024-03-26T08:23:51.868Z",
+      "useFor": "dessert"
     }
   ]
 }

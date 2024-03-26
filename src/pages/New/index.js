@@ -30,23 +30,20 @@ const New = () => {
     const data = {
       type: billType,
       money: billType === 'pay' ? -money : +money,
-      // date: date,
-      date: new Date(),
+      date: date,
       useFor,
     }
-    console.log(data)
     dispatch(addBillList(data))
   }
   // 存储选择的时间
-  // const [date, setDate] = useState()
+  const [date, setDate] = useState(new Date())
   // 控制时间打开关闭
-  // const [dateVisible, setDateVisible] = useState(false)
+  const [dateVisible, setDateVisible] = useState(false)
   // 确认选择时间
-  // const dateConfirm = value => {
-  //   console.log(value)
-  //   setDate(value)
-  //   setDateVisible(false)
-  // }
+  const dateConfirm = value => {
+    setDate(value)
+    setDateVisible(false)
+  }
   return (
     <div className="keepAccounts">
       <NavBar className="nav" onBack={() => navigate(-1)}>
@@ -68,10 +65,10 @@ const New = () => {
             <div className="date">
               <Icon type="calendar" className="icon" />
               <span className="text" onClick={() => setDateVisible(true)}>
-                {/* {dayjs(date).format('YYYY-MM-DD')} */}
+                {dayjs(date).format('YYYY-MM-DD')}
               </span>
               {/* 时间选择器 */}
-              {/* <DatePicker className="kaDate" title="记账日期" max={new Date()} visible={dateVisible} onConfirm={dateConfirm} /> */}
+              <DatePicker className="kaDate" title="记账日期" max={new Date()} visible={dateVisible} onConfirm={dateConfirm} />
             </div>
             <div className="kaInput">
               <Input className="input" placeholder="0.00" type="number" value={money} onChange={moneyChange} />
@@ -91,8 +88,7 @@ const New = () => {
                 {item.list.map(item => {
                   return (
                     // selected
-                    // <div className={classNames('item', useFor === item.type ? 'selected' : '')} key={item.type} onClick={() => setUseFor(item.type)}>
-                    <div className={classNames('item', true ? 'selected' : '')} key={item.type} onClick={() => setUseFor(item.type)}>
+                    <div className={classNames('item', useFor === item.type ? 'selected' : '')} key={item.type} onClick={() => setUseFor(item.type)}>
                       <div className="icon">
                         <Icon type={item.type} />
                       </div>
