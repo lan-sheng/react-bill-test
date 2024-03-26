@@ -97,6 +97,41 @@
       "date": "2024-02-28T16:00:00.000Z",
       "useFor": "salary",
       "id": 21
+    },
+    {
+      "id": "6241",
+      "type": "pay",
+      "money": 0,
+      "date": "2024-03-26T08:10:59.361Z",
+      "useFor": ""
+    },
+    {
+      "id": "453a",
+      "type": "pay",
+      "money": 0,
+      "date": "2024-03-26T08:11:18.565Z",
+      "useFor": "longdistance"
+    },
+    {
+      "id": "b999",
+      "type": "pay",
+      "money": -110,
+      "date": "2024-03-26T08:11:30.293Z",
+      "useFor": "longdistance"
+    },
+    {
+      "id": "76f3",
+      "type": "income",
+      "money": 110,
+      "date": "2024-03-26T08:11:37.495Z",
+      "useFor": "bonus"
+    },
+    {
+      "id": "e976",
+      "type": "income",
+      "money": 110,
+      "date": "2024-03-26T08:11:51.658Z",
+      "useFor": "bonus"
     }
   ]
 }
